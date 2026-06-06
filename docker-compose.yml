@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: agri_scan_backend
+    volumes:
+      - ./backend/models:/app/models
+      - agri_scan_db:/app
+    expose:
+      - "8000"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: agri_scan_frontend
+    expose:
+      - "80"
+    restart: unless-stopped
+
+  proxy:
+    image: nginx:alpine
+    container_name: agri_scan_proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+    depends_on:
+      - backend
+      - frontend
+    restart: unless-stopped
+
+volumes:
+  agri_scan_db:

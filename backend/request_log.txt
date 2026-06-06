@@ -1,0 +1,33 @@
+Incoming request: GET http://localhost:8000/
+Response status: 200
+Incoming request: GET http://localhost:8000/
+Response status: 200
+Incoming request: POST http://localhost:8000/detect
+Response status: 200
+Incoming request: POST http://localhost:8000/detect
+Response status: 200
+Incoming request: POST http://localhost:8000/detect
+Response status: 200
+Incoming request: POST http://localhost:8000/detect
+Response status: 200
+Incoming request: POST http://localhost:8000/detect
+Response status: 200
+Response body: {"detections":[{"label":"canker","confidence":0.853010892868042,"bbox":[0.0022264004219323397,0.02210712432861328,0.47100353240966797,0.47489237785339355]}],"total":1,"model_used":"YOLOv8s"}
+Incoming request: POST http://localhost:8000/detect
+Response status: 200
+Response body: {"detections":[{"label":"canker","confidence":0.853010892868042,"bbox":[0.0022264004219323397,0.02210712432861328,0.47100353240966797,0.47489237785339355]}],"total":1,"model_used":"YOLOv8s"}
+Incoming request: POST http://localhost:8000/detect
+Response status: 200
+Response body: {"detections":[{"label":"canker","confidence":0.853010892868042,"bbox":[0.0022264004219323397,0.02210712432861328,0.47100353240966797,0.47489237785339355]}],"total":1,"model_used":"YOLOv8s"}
+Incoming request: POST http://localhost:8000/detect
+Response status: 200
+Response body: {"detections":[{"label":"canker","confidence":0.853010892868042,"bbox":[0.0022264004219323397,0.02210712432861328,0.47100353240966797,0.47489237785339355]}],"total":1,"model_used":"YOLOv8s"}
+Incoming request: POST http://localhost:8000/detect
+Response status: 200
+Response body: {"detections":[{"label":"canker","confidence":0.8382160663604736,"bbox":[0.0037511824630200863,0.011226559057831764,0.46791553497314453,0.47660523653030396]}],"total":1,"model_used":"YOLOv12s"}
+Incoming request: POST http://localhost:8000/detect
+Response status: 200
+Response body: {"detections":[{"label":"canker","confidence":0.8382160663604736,"bbox":[0.0037511824630200863,0.011226559057831764,0.46791553497314453,0.47660523653030396]}],"total":1,"model_used":"YOLOv12s"}
+Incoming request: POST http://localhost:8000/detect
+Response status: 200
+Response body: {"detections":[],"total":0,"model_used":"YOLOv12s"}

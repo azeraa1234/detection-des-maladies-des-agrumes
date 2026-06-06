@@ -1,0 +1,7 @@
+__pycache__
+*.pyc
+agri_scan.db
+models/
+best-run8.pt
+yolov8n.pt
+FSRCNN_x2.pb
