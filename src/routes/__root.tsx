@@ -16,6 +16,7 @@ import { AppLayout } from "@/components/layout/AppLayout";
 import { Toaster } from "@/components/ui/sonner";
 import { AuthProvider, useAuth } from "../contexts/AuthContext";
 import { NotificationProvider } from "../contexts/NotificationContext";
+import { ThemeProvider, useTheme } from "../contexts/ThemeContext";
 
 function NotFoundComponent() {
   return (
@@ -120,6 +121,22 @@ function RootShell({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const theme = localStorage.getItem('theme') || 'dark';
+                  if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
       </head>
       <body>
         {children}
@@ -129,25 +146,32 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+function AppToaster() {
+  const { theme } = useTheme();
+  return <Toaster richColors theme={theme} position="top-right" />;
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const location = useLocation();
   const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
 
   return (
-    <AuthProvider>
-      <NotificationProvider>
-        <QueryClientProvider client={queryClient}>
-          {isAuthPage ? (
-            <Outlet />
-          ) : (
-            <AppLayout>
+    <ThemeProvider>
+      <AuthProvider>
+        <NotificationProvider>
+          <QueryClientProvider client={queryClient}>
+            {isAuthPage ? (
               <Outlet />
-            </AppLayout>
-          )}
-          <Toaster richColors theme="dark" position="top-right" />
-        </QueryClientProvider>
-      </NotificationProvider>
-    </AuthProvider>
+            ) : (
+              <AppLayout>
+                <Outlet />
+              </AppLayout>
+            )}
+            <AppToaster />
+          </QueryClientProvider>
+        </NotificationProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }

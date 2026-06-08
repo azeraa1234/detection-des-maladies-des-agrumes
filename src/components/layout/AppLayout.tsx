@@ -11,12 +11,15 @@ import {
   Bot,
   LogOut,
   LogIn,
+  Sun,
+  Moon,
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "@tanstack/react-router";
 import { useNotifications } from "../../contexts/NotificationContext";
+import { useTheme } from "../../contexts/ThemeContext";
 import {
   Popover,
   PopoverContent,
@@ -48,6 +51,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
   const { notifications, unreadCount, markAsRead, markAllAsRead } = useNotifications();
+  const { theme, toggleTheme } = useTheme();
   const title = PAGE_TITLES[pathname] ?? "Analysi M3ana";
   const today = new Date().toLocaleDateString("fr-FR", {
     weekday: "long",
@@ -139,6 +143,18 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
             <span className="hidden text-xs text-muted-foreground md:inline capitalize">
               {today}
             </span>
+
+            <button
+              onClick={toggleTheme}
+              className="grid h-9 w-9 place-items-center rounded-full border border-border text-muted-foreground hover:text-foreground transition-colors hover:bg-muted/30"
+              aria-label={theme === "dark" ? "Activer le mode clair" : "Activer le mode sombre"}
+            >
+              {theme === "dark" ? (
+                <Sun className="h-4 w-4 text-amber-400" />
+              ) : (
+                <Moon className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+              )}
+            </button>
 
             <Popover>
               <PopoverTrigger asChild>
