@@ -31,4 +31,4 @@ EXPOSE 80
 # Run wrangler dev which simulates the Cloudflare Workers runtime
 # --no-live-reload: stable server mode (no HMR)
 # --port 80 and --ip 0.0.0.0 so Docker proxy can reach it
-CMD ["npx", "wrangler", "dev", "dist/server/index.js", "--port", "80", "--ip", "0.0.0.0", "--no-live-reload", "--local"]
+CMD ["npx", "wrangler", "dev", "dist/server/server.js", "--port", "80", "--ip", "0.0.0.0", "--no-live-reload", "--local", "--compatibility-flags", "nodejs_compat"]
